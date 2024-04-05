@@ -65,8 +65,64 @@ function afficherQuestion() {
     const currentQuestion = questions.shift();
 
     //afficher la question et les options de réponse
-    const reponseUser = document.getElementsByClassName('question')
-    
+    // const reponseUser = document.getElementsById='question')
+    const cardDIv = document.getElementById('card');
+
+    //création de l'élément p
+    const questionP = document.createElement('p');
+    questionP.textContent = currentQuestion.questions;
+
+    //Création du formulaire avec l'ID "quizform"
+    const form = document.createElement('form')
+    form.id = "quizForm";
+
+    //dans une boucle on crée les options de réponse
+    //forEAch pour parcourir un tableau
+
+    currentQuestion.options.forEach((option, index) => {
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'answer';
+
+        const label = document.createElement('label');
+        label.textContent = option;
+
+        //ajout des éléments input et label au formulaire
+        form.appendChild(input);
+        form.appendChild(label);
+    });
+
+    // Création du bouton de validation
+
+    const submitB = document.createElement('input');
+    submitB.type = 'submit';
+    submitB.type = 'Valider';
+
+    form.appendChild(submitB);
+
+    //ajout de l'élément p et du formulaire à l'élémenet div
+    cardDIv.appendChild(questionP);
+    cardDIv.appendChild(form);
+
+    //ajouter un écouteur d'évéement pour le formualire
+
+    document.getElementById('quizForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const selectedAnswer = document.querySelector('input[name=answer]:checked');
+        if ()
+    })
+
+
+
+
+
+
+
+
+
+
+
+
     // const reponseUser = prompt(`${currentQuestion.questions}\n${currentQuestion.options.join("\n")}`)
 
     //on vérifie la réponse de l'utilisateur
@@ -109,4 +165,5 @@ reloadButton.addEventListener('click', () => {
 
 let button2 = document.createElement('button');
 button2.innerHTML = "Rejouer";
-reloadButton.appendChild(button2);
+reloadButton.appendChild(button2); nt.createElement('div');
+
