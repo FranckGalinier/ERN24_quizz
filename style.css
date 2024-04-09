@@ -1,0 +1,80 @@
+.cinzel-uniquifier {
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
+
+body {
+    background-color: rgb(34, 33, 33);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cinzel', sans-serif;
+
+}
+
+h1 {
+    color: aliceblue;
+    font-size: 45px;
+    margin: 20 px
+}
+
+button,
+.submitButton {
+    color: aliceblue;
+    background-color: rgb(34, 33, 33);
+    border: 2px solid aliceblue;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#card {
+    color: aliceblue;
+    font-size: 18px;
+}
+
+#quizForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.submitButton {
+    margin: 10px
+}
+
+label {
+    margin-right: 15px;
+    line-height: 32px;
+}
+
+input[type="radio" i] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid aliceblue;
+    transition: 0.2s all linear;
+    margin-right: 5px;
+
+    position: relative;
+    top: 4px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+input:checked {
+    border: 10px solid aliceblue;
+}
+
+.divAnswer {
+    color: aliceblue;
+}

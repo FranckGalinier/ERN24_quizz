@@ -1,5 +1,4 @@
-// on créer un tableau de question
-
+///on crée un tableau de questions
 const questions = [
     {
         questions: "Quel est le langage de programmation le plus utilisé dans le développement web?",
@@ -53,33 +52,26 @@ const questions = [
     },
 ]
 
-
 let score = 0;
-
 const nbrQuestions = questions.length;
 
-//on crée une fonction pour afficher le question actuelle et receuillir la réponse
-
+//function pour afficher la question actuelle et receuillir la réponse
 function afficherQuestion() {
-    //obtenir et supprimer la première question du tableau
+    // Obtenir et supprimer la première question du tableau
     const currentQuestion = questions.shift();
+    // Sélection de l'élément avec l'ID "card"
+    const cardDiv = document.getElementById('card');
 
-    //afficher la question et les options de réponse
-    // const reponseUser = document.getElementsById='question')
-    const cardDIv = document.getElementById('card');
+    // Création de l'élément p contenant le texte de la question
+    const questionParagraph = document.createElement('p');
+    questionParagraph.textContent = currentQuestion.questions;
 
-    //création de l'élément p
-    const questionP = document.createElement('p');
-    questionP.textContent = currentQuestion.questions;
-
-    //Création du formulaire avec l'ID "quizform"
-    const form = document.createElement('form')
-    form.id = "quizForm";
+    // Création du formulaire avec l'ID "quizForm"
+    const form = document.createElement('form');
+    form.id = 'quizForm';
 
     //dans une boucle on crée les options de réponse
-    //forEAch pour parcourir un tableau
-
-    currentQuestion.options.forEach((option, index) => {
+    currentQuestion.options.forEach((option) => {
         const input = document.createElement('input');
         input.type = 'radio';
         input.name = 'answer';
@@ -87,77 +79,65 @@ function afficherQuestion() {
         const label = document.createElement('label');
         label.textContent = option;
 
-        //ajout des éléments input et label au formulaire
+        // Ajout des éléments input et label au formulaire
         form.appendChild(input);
         form.appendChild(label);
     });
 
     // Création du bouton de validation
+    const submitButton = document.createElement('input');
+    submitButton.className = 'submitButton'
+    submitButton.type = 'submit';
+    submitButton.value = 'Valider';
 
-    const submitB = document.createElement('input');
-    submitB.type = 'submit';
-    submitB.type = 'Valider';
+    // Ajout du bouton de validation au formulaire
+    form.appendChild(submitButton);
 
-    form.appendChild(submitB);
+    // Ajout de l'élément p et du formulaire à l'élément div "card"
+    cardDiv.appendChild(questionParagraph);
+    cardDiv.appendChild(form);
 
-    //ajout de l'élément p et du formulaire à l'élémenet div
-    cardDIv.appendChild(questionP);
-    cardDIv.appendChild(form);
-
-    //ajouter un écouteur d'évéement pour le formualire
-
+    // Ajouter un écouteur d'événement pour le formulaire
     document.getElementById('quizForm').addEventListener('submit', function (event) {
         event.preventDefault();
         const selectedAnswer = document.querySelector('input[name=answer]:checked');
-        if ()
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-    // const reponseUser = prompt(`${currentQuestion.questions}\n${currentQuestion.options.join("\n")}`)
-
-    //on vérifie la réponse de l'utilisateur
-
-    if (reponseUser === currentQuestion.answer) {
-        alert("Bonne réponse !!!");
-        score++;
-    }
-    else {
-        alert(`Mauvaise réponse! La bonne réponse est: ${currentQuestion.answer}`);
-    }
-    // on vérifie si il reste des questions
-
-    if (questions.length > 0) {
-        afficherQuestion();
-    } else {
-        finDePartie();
-    }
+        if (!selectedAnswer) {
+            alert("Veuillez sélectionner une réponse.");
+            return;
+        }
+        const userAnswer = selectedAnswer.nextSibling.textContent;
+        if (userAnswer === currentQuestion.answer) {
+            // addAnswer();
+            alert("Bonne réponse!");
+            //on vide card
+            cardDiv.innerHTML = '';
+            score++;
+        } else {
+            alert(`Mauvaise réponse! La bonne réponse est: ${currentQuestion.answer}`);
+            //on vide card
+            cardDiv.innerHTML = '';
+        }
+        selectedAnswer.checked = false;
+        if (questions.length > 0) {
+            afficherQuestion();
+        } else {
+            finDePartie();
+        }
+    });
 }
-// fonction pour gérer la fin de partie
-
+//fonction pour gérer la fin de partie
 function finDePartie() {
-    alert(`Fin de Partie ! Votre score est de ${score}/${nbrQuestions}`);
+    alert(`Fin de partie! Votre score est de ${score}/${nbrQuestions}`);
 }
 
-
+//création d'un bouton pour commencer le jeu
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', afficherQuestion);
-
 let button = document.createElement('button');
 button.innerHTML = "Commencer le jeu";
 startButton.appendChild(button);
 
 //création du bouton pour recharger le jeu
-
 let reloadButton = document.getElementById('reload');
 reloadButton.addEventListener('click', () => {
     location.reload();
@@ -165,5 +145,12 @@ reloadButton.addEventListener('click', () => {
 
 let button2 = document.createElement('button');
 button2.innerHTML = "Rejouer";
-reloadButton.appendChild(button2); nt.createElement('div');
+reloadButton.appendChild(button2);
 
+//fonction pour afficher le résultat sur la page
+
+// function addAnswer() {
+//     const pAnswer = document.createElement('p');
+//     pAnswer.id = 'pAnswer'
+//     pAnswer.textContent = 'Bonne réponse !!';
+// }
